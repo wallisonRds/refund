@@ -6,6 +6,7 @@ const category = document.getElementById("category");
 
 // Seleciona os elementos da lista
 const expenseList = document.querySelector("ul");
+const expensesTotal = document.querySelector("aside header h2");
 const expensesQuantity = document.querySelector("aside header p span");
 
 // Captura o valor de input para formatar o valor.
@@ -95,6 +96,9 @@ function expenseAdd(newExpense) {
     // Adiciona o item na lista
     expenseList.append(expenseItem);
 
+    // Limpa o formulário para adicionar novos itens
+    formClear();
+
     // Atualiza os totais
     updateTotals();
   } catch (error) {
@@ -104,7 +108,6 @@ function expenseAdd(newExpense) {
 }
 
 // Atualiza os totais.
-
 function updateTotals() {
   try {
     // Recupera todos os itens (li) da lista (ul)
@@ -113,16 +116,67 @@ function updateTotals() {
       items.length > 1 ? "despesas" : "despesa"
     }`;
 
-    // Variável ara incrementar o total
+    // Variável para incrementar o total
     let total = 0;
 
     // Percorre cada item (li) da lista (ul)
     for (let item = 0; item < items.length; item++) {
       const itemAmount = items[item].querySelector(".expense-amount");
-      console.log(itemAmount);
+
+      // Remover caracteres não númericos e substitui a vírgula pelo ponto.
+      let value = itemAmount.textContent
+        .replace(/[^\d,]/g, "")
+        .replace(",", ".");
+
+      // converte o valor para float.
+      value = parseFloat(value);
+
+      if (isNaN(value)) {
+        return alert(
+          "Não foi possivel calcular o total. O valor não parece ser um valor númerico."
+        );
+      }
+      // Incrementar o valor total.
+      total += Number(value);
     }
+
+    // Cria a span para adicionar o R$ formatado.
+    const symbolBRL = document.createElement("small");
+    symbolBRL.textContent = "R$";
+
+    // formata o valor e remove R$ que será exibido pela small com um estilo customizado.
+    total = formatCurrencyBrl(total).toUpperCase().replace("R$", "");
+
+    // Limpa o conteúdo do elemento
+    expensesTotal.innerHTML = "";
+
+    // Valor total formatado
+    expensesTotal.append(symbolBRL, total);
   } catch (error) {
     console.log(error);
     alert("Não foi possivel atualizar os totais");
   }
+}
+
+// evento que captura o clique nos itens da lista.
+expenseList.addEventListener("click", function (event) {
+  // Verificar se o elemento clicado o ícone de remover.
+  if (event.target.classList.contains("remove-icon")) {
+    // Obtém a li pai do elemento clicado.
+    const item = event.target.closest(".expense");
+    // remove item da lista.
+    item.remove();
+  }
+  // atualiza os totais.
+  updateTotals();
+});
+
+function formClear() {
+  // Limpa os inputs.
+  expense.value = "";
+  category.value = "";
+  amount.value = "";
+
+  // coloca o foco no input de amount
+  expense.focus();
 }
