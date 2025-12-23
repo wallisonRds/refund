@@ -32,7 +32,7 @@ Valor total
 
 🧠 Como funciona
 
-As despesas são adicionadas dinamicamente à lista (<ul>)
+As despesas são adicionadas dinamicamente à lista 
 
 O total é recalculado do zero sempre que:
 
