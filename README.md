@@ -5,6 +5,7 @@
 Este projeto é um sistema simples de controle de despesas, desenvolvido com HTML, CSS e JavaScript puro, que permite adicionar, listar e remover despesas, além de calcular automaticamente o total gasto.
 
 O foco do projeto é praticar manipulação do DOM, eventos, formatação de valores monetários e boas práticas em JavaScript.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ✨ Funcionalidades
 
@@ -43,6 +44,7 @@ Uma despesa é removida
 O cálculo é feito lendo diretamente os elementos existentes no DOM
 
 O sistema usa delegação de eventos para remover itens da lista
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 🛠️ Tecnologias Utilizadas
 
@@ -63,13 +65,13 @@ JavaScript (Vanilla JS)
 ├── style.css
 ├── script.js
 └── README.md
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ▶️ Como usar
 
 Clone o repositório:
 
 git clone https://github.com/wallisonRds/refund.git
-
 
 Abra o arquivo index.html no navegador
 
@@ -84,6 +86,7 @@ Valor
 Clique em Adicionar
 
 Para remover uma despesa, clique no ícone 🗑️ ao lado do item
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 📌 Aprendizados Aplicados
 
@@ -98,6 +101,7 @@ Formatação de moeda com toLocaleString
 Organização de código JavaScript
 
 Tratamento de erros com try...catch
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 🚀 Possíveis Melhorias Futuras
 
